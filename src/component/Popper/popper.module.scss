@@ -1,12 +1,13 @@
 .wraper {
     // position: absolute;
     width: 100%;
-    margin-top: 8px;
+    // margin-top: 8px;
     background: #ffffff;
     box-shadow: #0000001f 0px 2px 12px;
     border-radius: 8px;
     padding-top: 8px;
     box-sizing: border-box;
     max-height: min((100vh - 96px) - 60px, 734px);
+    min-height: 100px;
     // overflow: hidden auto;
 }

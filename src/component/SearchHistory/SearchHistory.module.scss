@@ -1,0 +1,19 @@
+.search-history {
+    display: flex;
+    padding: 9px 16px;
+    align-items: center;
+
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+}
+
+.icon {
+    font-size: 1.3rem;
+    padding-right: 10px;
+}
+
+.title {
+    font-size: 1.6rem;
+    font-weight: 500;
+}

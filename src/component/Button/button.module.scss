@@ -1,0 +1,51 @@
+.wraper {
+    font-size: 1.6rem;
+    font-weight: 600;
+    min-width: 100px;
+    min-height: 36px;
+    border-radius: 4px;
+    padding: 5px 15px;
+    border: solid 1px transparent;
+    background-color: var(--white);
+}
+
+.primary {
+    background-color: var(--primary);
+    color: var(--white) !important;
+    transition: 0.1s;
+}
+
+.outline {
+    color: var(--primary);
+    border-color: var(--primary);
+
+    &:hover {
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
+
+.small {
+    min-width: 88px;
+    min-height: 28px;
+}
+
+.large {
+    min-width: 324px;
+    min-height: 48px;
+}
+
+.round {
+    min-height: 32px;
+    min-width: 90px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: solid 1px rgba(22, 24, 35, 0.12);
+    color: #161823bf;
+    border-radius: 52px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 6%);
+
+    &:hover {
+        border-color: rgba(22, 24, 35, 0.2);
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+}

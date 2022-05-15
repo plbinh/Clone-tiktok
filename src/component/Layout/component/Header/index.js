@@ -1,24 +1,31 @@
-import styles from './header.module.scss';
 import classNames from 'classnames/bind';
+import styles from './header.module.scss';
 import imgs from '~/accsets/imgs';
+import { Wraper as PopperWraper } from '~/component/Popper';
+import Button from '~/component/Button';
+import AccountItems from '~/component/AccountItems';
+import SearchHistory from '~/component/SearchHistory';
+
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale-subtle.css';
+
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { faCircleQuestion, faKeyboard, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightFromBracket,
     faArrowUpFromBracket,
-    faCircleCheck,
     faCircleXmark,
     faDollarSign,
+    faEllipsisVertical,
     faGear,
     faLanguage,
     faMagnifyingGlass,
-    faSearch,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import { faCircleQuestion, faKeyboard, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
-import { useEffect, useState } from 'react';
-import { Wraper as PopperWraper } from '~/component/Popper';
 
 const cx = classNames.bind(styles);
 
@@ -27,84 +34,34 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1, 2, 3]);
+            setSearchResult([]);
         }, 0);
     }, []);
 
     return (
         <header className={cx('wraper')}>
             <div className={cx('container')}>
-                <img className={cx('logo')} src={imgs.logo} alt="tiktok"></img>
+                <Link to="/">
+                    <img className={cx('logo')} src={imgs.logo} alt="tiktok"></img>
+                </Link>
 
                 <Tippy
                     interactive
                     visible={searchResult.length > 0}
+                    // visible
                     render={(attrs) => (
                         <PopperWraper>
                             <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                                <div className={cx('search-history')}>
-                                    <FontAwesomeIcon className={cx('icon')} icon={faSearch} />
-                                    <p className={cx('title')}> Le Bong </p>
-                                </div>
-                                <div className={cx('search-history')}>
-                                    <FontAwesomeIcon className={cx('icon')} icon={faSearch} />
-                                    <p className={cx('title')}> Le Bong </p>
-                                </div>
-                                <div className={cx('search-history')}>
-                                    <FontAwesomeIcon className={cx('icon')} icon={faSearch} />
-                                    <p className={cx('title')}> Le Bong </p>
-                                </div>
+                                <SearchHistory />
+                                <SearchHistory />
+                                <SearchHistory />
+                                <SearchHistory />
 
                                 <p className={cx('accounts')}>Accounts</p>
 
-                                <div className={cx('user')}>
-                                    <img className={cx('user-img')} src={imgs.avatar} alt="user-img" />
-                                    <div className={cx('user-info')}>
-                                        <h4>
-                                            lebong.95{' '}
-                                            <span>
-                                                <FontAwesomeIcon icon={faCircleCheck} />
-                                            </span>
-                                        </h4>
-                                        <p>Le Bong</p>
-                                    </div>
-                                </div>
-                                <div className={cx('user')}>
-                                    <img className={cx('user-img')} src={imgs.avatar} alt="user-img" />
-                                    <div className={cx('user-info')}>
-                                        <h4>
-                                            lebong.95{' '}
-                                            <span>
-                                                <FontAwesomeIcon icon={faCircleCheck} />
-                                            </span>
-                                        </h4>
-                                        <p>Le Bong</p>
-                                    </div>
-                                </div>
-                                <div className={cx('user')}>
-                                    <img className={cx('user-img')} src={imgs.avatar} alt="user-img" />
-                                    <div className={cx('user-info')}>
-                                        <h4>
-                                            lebong.95{' '}
-                                            <span>
-                                                <FontAwesomeIcon icon={faCircleCheck} />
-                                            </span>
-                                        </h4>
-                                        <p>Le Bong</p>
-                                    </div>
-                                </div>
-                                <div className={cx('user')}>
-                                    <img className={cx('user-img')} src={imgs.avatar} alt="user-img" />
-                                    <div className={cx('user-info')}>
-                                        <h4>
-                                            lebong.95{' '}
-                                            <span>
-                                                <FontAwesomeIcon icon={faCircleCheck} />
-                                            </span>
-                                        </h4>
-                                        <p>Le Bong</p>
-                                    </div>
-                                </div>
+                                <AccountItems />
+                                <AccountItems />
+                                <AccountItems />
                             </div>
                         </PopperWraper>
                     )}
@@ -149,7 +106,6 @@ function Header() {
                             <Tippy
                                 placement="bottom-end"
                                 interactive
-                                visible
                                 render={(attrs) => (
                                     <PopperWraper>
                                         <div className={cx('setting')}>
@@ -194,6 +150,39 @@ function Header() {
                             </Tippy>
                         </li>
                     </ul>
+
+                    <Link className={cx('upload')} to="/login">
+                        Upload
+                    </Link>
+                    <Button primary>Log in</Button>
+                    <Tippy
+                        delay={[200, 500]}
+                        // animation={true}
+                        placement="bottom-end"
+                        interactive
+                        render={(attrs) => (
+                            <PopperWraper>
+                                <div className={cx('options')}>
+                                    <div className={cx('section')}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faLanguage} />
+                                        <h4 className={cx('title')}>English</h4>
+                                    </div>
+                                    <div className={cx('section')}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faCircleQuestion} />
+                                        <h4 className={cx('title')}>Feedback and help</h4>
+                                    </div>
+                                    <div className={cx('section')}>
+                                        <FontAwesomeIcon className={cx('icon')} icon={faKeyboard} />
+                                        <h4 className={cx('title')}>Keyboard shortcuts</h4>
+                                    </div>
+                                </div>
+                            </PopperWraper>
+                        )}
+                    >
+                        <span>
+                            <FontAwesomeIcon className={cx('three-dot')} icon={faEllipsisVertical} />
+                        </span>
+                    </Tippy>
                 </div>
             </div>
         </header>
