@@ -1,5 +1,6 @@
 .options {
     padding-bottom: 8px;
+    position: relative;
 }
 
 .wraper {
@@ -24,6 +25,10 @@
 
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &.separate {
+        border-top: 1px solid #1618231f;
     }
 }
 

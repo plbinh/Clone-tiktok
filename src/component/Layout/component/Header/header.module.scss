@@ -100,8 +100,6 @@
         list-style: none;
         display: flex;
         align-items: center;
-        font-size: 2.2rem;
-        display: none;
 
         li + li {
             margin-left: 22px;
@@ -123,20 +121,23 @@
         object-position: center;
     }
 
-    .upload,
-    .message,
-    .inbox,
+    .upload-icon,
+    .message-icon,
+    .inbox-icon,
     .user {
         cursor: pointer;
     }
 
-    .upload {
+    .upload-icon {
+        font-size: 2.2rem;
     }
 
-    .message {
+    .message-icon {
+        font-size: 2.2rem;
     }
 
-    .inbox {
+    .inbox-icon {
+        font-size: 2.2rem;
     }
 
     .user {
@@ -175,46 +176,6 @@
         font-size: 1.4rem;
         font-weight: 500;
         color: rgba(22, 24, 35, 0.5);
-    }
-}
-
-// setting User
-
-.setting {
-    width: 223px;
-    padding-bottom: 8px;
-    position: relative;
-
-    &::before {
-        content: '';
-        position: absolute;
-        border-bottom: 20px solid #000;
-    }
-
-    .section {
-        display: flex;
-        padding: 10px 16px;
-        align-items: center;
-        cursor: pointer;
-
-        .icon {
-            padding-right: 8px;
-            font-size: 18px;
-            width: 20px;
-        }
-
-        .title {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        &:hover {
-            background-color: rgba(22, 24, 35, 0.03);
-        }
-    }
-
-    .log-out {
-        border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
 }
 

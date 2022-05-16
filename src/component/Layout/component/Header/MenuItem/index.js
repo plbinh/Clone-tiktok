@@ -8,6 +8,7 @@ import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import MenuHeader from './MenuHeader';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -20,8 +21,9 @@ function MenuItem({ items = [], children, onChange = defaultFn }) {
 
     return (
         <Tippy
+            // visible
             delay={[200, 500]}
-            offset={[-80, 16]}
+            offset={[-80, 12]}
             interactive
             onHide={() => setHistory((prev) => prev.slice(0, 1))}
             render={(attrs) => (
@@ -37,11 +39,17 @@ function MenuItem({ items = [], children, onChange = defaultFn }) {
                         )}
                         {current.data.map((item, index) => {
                             const isParent = !!item.children;
+                            const classes = cx('wraper', { separate: item.separate });
+                            let TypeBtn = 'div';
+                            if (item.to) {
+                                TypeBtn = Link;
+                            }
 
                             return (
-                                <div
-                                    className={cx('wraper')}
+                                <TypeBtn
+                                    className={classes}
                                     key={index}
+                                    to={item.to}
                                     onClick={() => {
                                         if (isParent) {
                                             setHistory((prev) => [...prev, item.children]);
@@ -52,7 +60,7 @@ function MenuItem({ items = [], children, onChange = defaultFn }) {
                                 >
                                     {item.icon && <FontAwesomeIcon className={cx('icon')} icon={item.icon} />}
                                     <h4 className={cx('title')}>{item.title}</h4>
-                                </div>
+                                </TypeBtn>
                             );
                         })}
                     </div>

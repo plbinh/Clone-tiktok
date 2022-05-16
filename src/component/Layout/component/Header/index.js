@@ -6,51 +6,26 @@ import Button from '~/component/Button';
 import AccountItems from '~/component/AccountItems';
 import SearchHistory from '~/component/SearchHistory';
 import MenuItem from './MenuItem';
-import { languages } from '~/component/Languages';
+import { MENU_ITEM_IN, MENU_ITEM_OUT } from './menuItems';
 
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
+import TippyTooltips from '@tippyjs/react';
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { faCircleQuestion, faKeyboard, faMessage, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faMessage, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faArrowRightFromBracket,
     faArrowUpFromBracket,
     faCircleXmark,
-    faDollarSign,
     faEllipsisVertical,
-    faGear,
-    faLanguage,
     faMagnifyingGlass,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
-
-const MENU_ITEM = [
-    {
-        icon: faLanguage,
-        title: 'English',
-        children: {
-            title: 'Languages',
-            data: languages,
-        },
-    },
-    {
-        icon: faCircleQuestion,
-        title: 'Feedback and help',
-    },
-    {
-        icon: faKeyboard,
-        title: 'Keyboard shortcuts',
-    },
-];
-
-console.log(MENU_ITEM[0].children.data);
-console.log(languages);
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
@@ -71,6 +46,8 @@ function Header() {
                 break;
         }
     };
+
+    const currentUser = true;
 
     return (
         <header className={cx('wraper')}>
@@ -119,89 +96,54 @@ function Header() {
                     </div>
                 </Tippy>
 
-                <div className={cx('contain-actions')}>
-                    {/* Header actions */}
+                {/* Header actions */}
 
-                    <ul className={cx('actions')}>
-                        {/* <Tippy content="Upload video"> */}
-                        <li className={cx('primary-color', 'upload')}>
-                            <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                        </li>
-                        {/* </Tippy> */}
+                {currentUser ? (
+                    <div className={cx('contain-actions')}>
+                        <ul className={cx('actions')}>
+                            <TippyTooltips trigger="click" interactive content="Upload video">
+                                <li className={cx('primary-color', 'upload-icon')}>
+                                    <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                                </li>
+                            </TippyTooltips>
 
-                        {/* <Tippy content="Message"> */}
-                        <li className={cx('primary-color', 'message')}>
-                            <FontAwesomeIcon icon={faPaperPlane} />
-                        </li>
-                        {/* </Tippy> */}
+                            <TippyTooltips content="Message">
+                                <li className={cx('primary-color', 'message-icon')}>
+                                    <FontAwesomeIcon icon={faPaperPlane} />
+                                </li>
+                            </TippyTooltips>
 
-                        {/* <Tippy content="Inbox"> */}
-                        <li className={cx('primary-color', 'inbox')}>
-                            <FontAwesomeIcon icon={faMessage} />
-                        </li>
-                        {/* </Tippy> */}
-                        <li className={cx('user')}>
-                            <Tippy
-                                placement="bottom-end"
-                                interactive
-                                render={(attrs) => (
-                                    <PopperWraper>
-                                        <div className={cx('setting')}>
-                                            <div className={cx('section')}>
-                                                <FontAwesomeIcon className={cx('icon')} icon={faUser} />
-                                                <h4 className={cx('title')}>View profile</h4>
-                                            </div>
-                                            <div className={cx('section')}>
-                                                <FontAwesomeIcon className={cx('icon')} icon={faDollarSign} />
-                                                <h4 className={cx('title')}>Get coins</h4>
-                                            </div>
-                                            <div className={cx('section')}>
-                                                <FontAwesomeIcon className={cx('icon')} icon={faGear} />
-                                                <h4 className={cx('title')}>Settings</h4>
-                                            </div>
-                                            <div className={cx('section')}>
-                                                <FontAwesomeIcon className={cx('icon')} icon={faLanguage} />
-                                                <h4 className={cx('title')}>English</h4>
-                                            </div>
-                                            <div className={cx('section')}>
-                                                <FontAwesomeIcon className={cx('icon')} icon={faCircleQuestion} />
-                                                <h4 className={cx('title')}>Feedback and help</h4>
-                                            </div>
-                                            <div className={cx('section')}>
-                                                <FontAwesomeIcon className={cx('icon')} icon={faKeyboard} />
-                                                <h4 className={cx('title')}>Keyboard shortcuts</h4>
-                                            </div>
-                                            <div className={cx('section', 'log-out')}>
-                                                <FontAwesomeIcon
-                                                    className={cx('icon')}
-                                                    icon={faArrowRightFromBracket}
-                                                />
-                                                <h4 className={cx('title')}>Log out</h4>
-                                            </div>
-                                        </div>
-                                    </PopperWraper>
-                                )}
-                            >
-                                <div className={cx('user-avt')}>
-                                    <img className={cx('img-avt')} src={imgs.avatar} alt="user avatar" />
-                                </div>
-                            </Tippy>
-                        </li>
-                    </ul>
+                            <TippyTooltips content="Inbox">
+                                <li className={cx('primary-color', 'inbox-icon')}>
+                                    <FontAwesomeIcon icon={faMessage} />
+                                </li>
+                            </TippyTooltips>
 
-                    <Link className={cx('upload')} to="/login">
-                        Upload
-                    </Link>
-                    <Button primary>Log in</Button>
+                            <li className={cx('user')}>
+                                <MenuItem items={MENU_ITEM_IN}>
+                                    <div className={cx('user-avt')}>
+                                        <img className={cx('img-avt')} src={imgs.avatar} alt="user avatar" />
+                                    </div>
+                                </MenuItem>
+                            </li>
+                        </ul>
+                    </div>
+                ) : (
+                    <div className={cx('contain-actions')}>
+                        <Link className={cx('upload')} to="/login">
+                            Upload
+                        </Link>
+                        <Button primary>Log in</Button>
 
-                    {/* Menu */}
+                        {/* Menu */}
 
-                    <MenuItem items={MENU_ITEM} onChange={handleChange}>
-                        <button className={cx('three-dot')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
-                    </MenuItem>
-                </div>
+                        <MenuItem items={MENU_ITEM_OUT} onChange={handleChange}>
+                            <button className={cx('three-dot')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        </MenuItem>
+                    </div>
+                )}
             </div>
         </header>
     );

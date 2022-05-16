@@ -42,3 +42,17 @@ button,
 a {
     cursor: pointer;
 }
+
+body .tippy-box {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    background-color: #545454eb;
+    color: var(--white);
+    padding: 5px;
+
+    .tippy-arrow:before {
+        color: #545454eb;
+        top: -8px !important;
+    }
+}
