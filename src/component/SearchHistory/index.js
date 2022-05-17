@@ -1,14 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './SearchHistory.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import imgs from '~/accsets/imgs';
 
 const cx = classNames.bind(styles);
 
 function SearchHistory() {
     return (
         <div className={cx('search-history')}>
-            <FontAwesomeIcon className={cx('icon')} icon={faSearch} />
+            <img className={cx('icon')} src={imgs.search} alt="search" />
             <p className={cx('title')}> Le Bong </p>
         </div>
     );

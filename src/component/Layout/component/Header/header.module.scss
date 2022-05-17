@@ -22,77 +22,6 @@
     height: 42px;
 }
 
-// search
-
-.search {
-    display: flex;
-    width: 361px;
-    height: 46px;
-    border-radius: 92px;
-    background-color: var(--bg-color);
-    align-items: center;
-    padding: 0 0 0 16px;
-    object-fit: cover;
-    overflow: hidden;
-    border: 1.5px solid var(--bg-color);
-
-    .input,
-    .clear,
-    .btn-search {
-        border: none;
-        background-color: transparent;
-    }
-
-    .input {
-        font-size: 1.5rem;
-        width: 252px;
-
-        &:not(:placeholder-shown) ~ .btn-search {
-            color: var(--text-color);
-        }
-    }
-
-    .clear {
-        flex: 1;
-        opacity: 0;
-    }
-
-    .loading {
-        display: none;
-    }
-
-    .btn-search {
-        position: relative;
-        font-size: 2rem;
-        flex: 1;
-        height: 100%;
-        padding-right: 5px;
-        color: #aaaaaf;
-
-        &:hover {
-            background-color: #e4e4e4;
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            height: 28px;
-            width: 1px;
-            border-left: 1px solid #dddddd;
-            left: -1px;
-            top: 8px;
-        }
-
-        &:active {
-            background-color: var(--bg-color);
-        }
-    }
-
-    &:focus-within {
-        border-color: #dddddd;
-    }
-}
-
 // actions
 
 .contain-actions {
@@ -138,6 +67,24 @@
 
     .inbox-icon {
         font-size: 2.2rem;
+        position: relative;
+
+        .notify {
+            display: flex;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            min-width: 21px;
+            height: 17px;
+            border-radius: 99px;
+            background-color: var(--primary);
+            top: -6px;
+            right: -11px;
+            color: var(--white);
+            font-size: 1rem;
+            padding: 2px 5px;
+            font-weight: 500;
+        }
     }
 
     .user {
@@ -165,18 +112,6 @@
 
 .primary-color {
     color: var(--primary);
-}
-
-// Wraper popper search result
-
-.search-result {
-    .accounts {
-        width: 353px;
-        padding: 5px 12px;
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: rgba(22, 24, 35, 0.5);
-    }
 }
 
 // menu setting

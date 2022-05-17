@@ -14,10 +14,12 @@ export const MENU_ITEM_OUT = [
     {
         icon: faCircleQuestion,
         title: 'Feedback and help',
+        to: '/feedback&help',
     },
     {
         icon: faKeyboard,
         title: 'Keyboard shortcuts',
+        to: '/keyboard-shortcuts',
     },
 ];
 
@@ -30,10 +32,12 @@ export const MENU_ITEM_IN = [
     {
         icon: faDollarSign,
         title: 'Get coins',
+        to: '/get-coins',
     },
     {
         icon: faGear,
         title: 'Settings',
+        to: '/settings',
     },
     ...MENU_ITEM_OUT,
     {
