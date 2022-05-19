@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
 import styles from './SearchHistory.module.scss';
-import imgs from '~/accsets/imgs';
+import { SearchIcon } from '~/component/Icon';
 
 const cx = classNames.bind(styles);
 
-function SearchHistory() {
+function SearchHistory({ data }) {
     return (
         <div className={cx('search-history')}>
-            <img className={cx('icon')} src={imgs.search} alt="search" />
-            <p className={cx('title')}> Le Bong </p>
+            <SearchIcon className={cx('icon')} />
+            <p className={cx('title')}>{data.full_name}</p>
         </div>
     );
 }

@@ -31,13 +31,24 @@
 
     .clear {
         flex: 1;
+        color: #dddddd;
     }
 
     .loading {
         position: absolute;
         top: 50%;
         right: 60px;
-        transform: translateY(-50%);
+        color: #dddddd;
+        animation: spiner 1s linear infinite;
+    }
+
+    @keyframes spiner {
+        from {
+            transform: translateY(-50%) rotate(0deg);
+        }
+        to {
+            transform: translateY(-50%) rotate(360deg);
+        }
     }
 
     .btn-search {
