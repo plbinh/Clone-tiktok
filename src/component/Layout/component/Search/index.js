@@ -81,50 +81,58 @@ function Search() {
     const handleHistorySearch = () => {};
 
     return (
-        <Tippy
-            interactive
-            visible={showSearchResult && searchResult.length > 0}
-            // visible
-            onClickOutside={() => setShowSearchResult(false)}
-            render={(attrs) => (
-                <PopperWraper>
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        {searchResult.map((data) => (
-                            <SearchHistory key={data.id} data={data} />
-                        ))}
+        /* 
+            Interactive tippy element may not be accessible via keyboard navigation 
+        because it is not directly after the reference element in the DOM source order. 
+        Using a wrapper <div> or <span> tag around the reference element solves this by 
+        creating a new parentNode context. 
+        */
+        <div>
+            <Tippy
+                interactive
+                visible={showSearchResult && searchResult.length > 0}
+                // visible
+                onClickOutside={() => setShowSearchResult(false)}
+                render={(attrs) => (
+                    <PopperWraper>
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                            {searchResult.map((data) => (
+                                <SearchHistory key={data.id} data={data} />
+                            ))}
 
-                        <p className={cx('accounts')}>Accounts</p>
-                        {searchResult.map((data) => (
-                            <AccountItems key={data.id} data={data} onClick={() => handleClickAccount(data)} />
-                        ))}
-                    </div>
-                </PopperWraper>
-            )}
-        >
-            <div className={cx('search')}>
-                <input
-                    value={searchValue}
-                    ref={inputRef}
-                    className={cx('input')}
-                    placeholder="Search accounts and videos"
-                    spellCheck={false}
-                    onFocus={handleShowResult}
-                    onChange={handleChange}
-                ></input>
-                <button className={cx('clear')} onClick={handleSearchValue}>
-                    {!!searchValue && !loading && <ClearIcon />}
-                </button>
-                {loading && <Loading className={cx('loading')} />}
+                            <p className={cx('accounts')}>Accounts</p>
+                            {searchResult.map((data) => (
+                                <AccountItems key={data.id} data={data} onClick={() => handleClickAccount(data)} />
+                            ))}
+                        </div>
+                    </PopperWraper>
+                )}
+            >
+                <div className={cx('search')}>
+                    <input
+                        value={searchValue}
+                        ref={inputRef}
+                        className={cx('input')}
+                        placeholder="Search accounts and videos"
+                        spellCheck={false}
+                        onFocus={handleShowResult}
+                        onChange={handleChange}
+                    ></input>
+                    <button className={cx('clear')} onClick={handleSearchValue}>
+                        {!!searchValue && !loading && <ClearIcon />}
+                    </button>
+                    {loading && <Loading className={cx('loading')} />}
 
-                <button
-                    className={cx('btn-search')}
-                    onClick={handleHistorySearch}
-                    onMouseDown={(e) => e.preventDefault()}
-                >
-                    <SearchIcon className={cx('search-icon')} />
-                </button>
-            </div>
-        </Tippy>
+                    <button
+                        className={cx('btn-search')}
+                        onClick={handleHistorySearch}
+                        onMouseDown={(e) => e.preventDefault()}
+                    >
+                        <SearchIcon className={cx('search-icon')} />
+                    </button>
+                </div>
+            </Tippy>
+        </div>
     );
 }
 

@@ -26,6 +26,7 @@ body {
     text-rendering: optimizeSpeed;
     color: var(--text-color);
     min-height: 120vh;
+    overflow-y: overlay;
 }
 
 input,

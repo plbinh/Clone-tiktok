@@ -3,6 +3,10 @@
     position: relative;
 }
 
+.menu-body {
+    overflow-y: auto;
+}
+
 .wraper {
     display: flex;
     width: 223px;
@@ -19,8 +23,8 @@
     }
 
     .title {
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: 1.4rem;
+        font-weight: 500;
     }
 
     &:hover {
@@ -43,6 +47,7 @@
     align-items: center;
     justify-content: center;
     margin-top: -8px;
+    flex-shrink: 0;
 
     .btn-back {
         position: absolute;
