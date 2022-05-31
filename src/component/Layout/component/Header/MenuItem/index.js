@@ -14,7 +14,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function MenuItem({ items = [], children, onChange = defaultFn }) {
+function MenuItem({ items = [], children, hideOnClick = false, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
 
     const current = history[history.length - 1];
@@ -24,6 +24,7 @@ function MenuItem({ items = [], children, onChange = defaultFn }) {
             // visible
             delay={[200, 500]}
             offset={[-80, 12]}
+            hideOnClick={hideOnClick}
             interactive
             onHide={() => setHistory((prev) => prev.slice(0, 1))}
             render={(attrs) => (

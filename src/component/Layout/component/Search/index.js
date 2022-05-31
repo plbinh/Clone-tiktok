@@ -69,6 +69,15 @@ function Search() {
         setSearchValue('');
     };
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+
+        // Khong cho nhap ki tu dau tien la khoang trang
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
     const handleHistorySearch = () => {};
 
     return (
@@ -100,14 +109,18 @@ function Search() {
                     placeholder="Search accounts and videos"
                     spellCheck={false}
                     onFocus={handleShowResult}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                 ></input>
                 <button className={cx('clear')} onClick={handleSearchValue}>
                     {!!searchValue && !loading && <ClearIcon />}
                 </button>
                 {loading && <Loading className={cx('loading')} />}
 
-                <button className={cx('btn-search')} onClick={handleHistorySearch}>
+                <button
+                    className={cx('btn-search')}
+                    onClick={handleHistorySearch}
+                    onMouseDown={(e) => e.preventDefault()}
+                >
                     <SearchIcon className={cx('search-icon')} />
                 </button>
             </div>

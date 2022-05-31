@@ -5,6 +5,7 @@ import Button from '~/component/Button';
 import MenuItem from './MenuItem';
 import { MENU_ITEM_IN, MENU_ITEM_OUT } from './menuItems';
 import Search from '~/component/Layout/component/Search';
+import routesConfig from '~/config/routes';
 
 import 'tippy.js/dist/tippy.css';
 import TippyTooltips from '@tippyjs/react';
@@ -35,7 +36,7 @@ function Header() {
     return (
         <header className={cx('wraper')}>
             <div className={cx('container')}>
-                <Link to="/">
+                <Link to={routesConfig.home}>
                     <img className={cx('logo')} src={imgs.logo} alt="tiktok"></img>
                 </Link>
 
@@ -77,7 +78,7 @@ function Header() {
                     </div>
                 ) : (
                     <div className={cx('contain-actions')}>
-                        <Link className={cx('upload')} to="/login">
+                        <Link className={cx('upload')} to={routesConfig.login}>
                             Upload
                         </Link>
                         <Button primary>Log in</Button>

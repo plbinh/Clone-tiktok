@@ -22,6 +22,7 @@
 
     .input {
         font-size: 1.5rem;
+        font-family: var(--font-family);
         width: 252px;
 
         &:not(:placeholder-shown) ~ .btn-search {
